@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "651872402291",
+    "project_id": "rentaliti",
+    "storage_bucket": "rentaliti.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651872402291:android:e6279abdb6756b63d16306",
+        "android_client_info": {
+          "package_name": "com.example.rentaliti"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRFTvmIjNm3RgMT0ng2CiSiULJnoKTUT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
