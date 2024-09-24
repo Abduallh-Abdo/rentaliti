@@ -29,7 +29,7 @@ List BMW_750Li = [
     "name": 'BMW 750Li',
     "image1": 'assets/list_info_car/BMW/BMW 750Li/1.2.jpg',
     "image2": 'assets/list_info_car/BMW/BMW 750Li/1.3.jpg',
-    "image3": 'assets/list_info_car/BMW/BMW 750Li/1.4.jpg',
+   // "image3": 'assets/list_info_car/BMW/BMW 750Li/1.4.jpg',
     "image4": 'assets/list_info_car/BMW/BMW 750Li/1.5.jpg',
     "image5": 'assets/list_info_car/BMW/BMW 750Li/1.6.jpg',
     "image6": 'assets/list_info_car/BMW/BMW 750Li/1.7.jpg',
@@ -118,7 +118,7 @@ List Mercedes_CLS = [
 List Merce_E_class = [
   {
     'name': 'Mercedes-Benz E-Class 2017 ',
-    'image1': 'mercedes/Merce E-class/2.1.jpg',
+    //'image1': 'mercedes/Merce E-class/2.1.jpg',
     'image2': 'mercedes/Merce E-class/2.2.jpg',
     'image3': 'mercedes/Merce E-class/2.3.jpg',
     'image4': 'mercedes/Merce E-class/2.4.jpg',
@@ -154,11 +154,11 @@ List Mercedes_Sl = [
 List Mercedes_SLC = [
   {
     'name': "Mercedes-AMG C63",
-    'image1': 'mercedes/Mercedes CLS/1.1.jpg',
     'image2': 'mercedes/Mercedes CLS/1.2.jpg',
     'image3': 'mercedes/Mercedes CLS/1.3.jpg',
     'image4': 'mercedes/Mercedes CLS/1.4.jpg',
     'image5': 'mercedes/Mercedes CLS/1.5.jpg',
+    'image1': 'mercedes/Mercedes CLS/1.1.jpg',
     'year': "2021",
     'top speed': "280 km/h"
   },
@@ -184,7 +184,7 @@ List ford_f_200 = [
     'image2': 'Ford/Ford-f-200/FORD RAPTOR.jpeg',
     'image3': 'Ford/Ford-f-200/Heavily Lifted F-150.jpeg',
     'image4':
-        'Ford/Ford-f-200/Top 10 Lifted Ford Trucks Modified for Off-roading and Desert Racing.jpeg',
+    'Ford/Ford-f-200/Top 10 Lifted Ford Trucks Modified for Off-roading and Desert Racing.jpeg',
     'image5': 'Ford/Ford-f-200/TuffTruckParts_com.jpeg',
     'top speed': '100 to 130 mph',
     'year': '2024',
@@ -210,9 +210,9 @@ List Ford_Mach_E = [
     'image1': 'Ford/Ford-mach-e/Ford Mustang Mach-E.jpeg',
     'image2': 'Ford/Ford-mach-e/2021 Ford Mustang Mach-E SUV.jpeg',
     'image3':
-        'Ford/Ford-mach-e/2023 Ford Mustang Mach-E Select SUV _ Model Details & Specs.jpeg',
+    'Ford/Ford-mach-e/2023 Ford Mustang Mach-E Select SUV _ Model Details & Specs.jpeg',
     'image4':
-        'Ford/Ford-mach-e/2024 Ford Mustang Mach-E Prices, Reviews, and Pictures _ Edmunds.jpeg',
+    'Ford/Ford-mach-e/2024 Ford Mustang Mach-E Prices, Reviews, and Pictures _ Edmunds.jpeg',
     'image5': 'Ford/Ford-mach-e/download (12).jpeg',
     'top speed': '111 to 150 mph',
     'year': '2022',
@@ -236,12 +236,12 @@ List Ford_Territory = [
   {
     'name': 'Ford Territory',
     'image1':
-        'Ford/Ford territory/Ford Territory 2023 lướt bán lại lỗ ngỡ ngàng sau chưa đầy 1_000km lăn bánh (1).jpeg',
+    'Ford/Ford territory/Ford Territory 2023 lướt bán lại lỗ ngỡ ngàng sau chưa đầy 1_000km lăn bánh (1).jpeg',
     'image2': 'Ford/Ford territory/Ford Territory.jpeg',
     'image3': 'Ford/Ford territory/Ford Territory Titanium 1_5 Turbo 2021.jpeg',
     'image4': 'Ford/Ford territory/Fotos da Territory 2022.jpeg',
     'image5':
-        'Ford/Ford territory/New 2021 Ford Territory - Budget Family SUV Interior & Exterior.jpeg',
+    'Ford/Ford territory/New 2021 Ford Territory - Budget Family SUV Interior & Exterior.jpeg',
     'top speed': '110 to 120 mph',
     'year': '2022',
     'KM allow per day': '120 mph',
@@ -252,16 +252,17 @@ List Ford_Territory = [
 List Alfa_Remo_4c = [
   {
     "name": 'Alfa Remo 4c',
-    "image1":
-        'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-1.jpg',
-    "image2":
-        'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-2.jpg',
+
     "image3":
-        'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-3.jpg',
+    'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-3.jpg',
     "image4":
-        'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-4.jpg',
+    'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-4.jpg',
     "image5":
-        'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-5.jpg',
+    'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-5.jpg',
+    "image1":
+    'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-1.jpg',
+    "image2":
+    'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-2.jpg',
     "year": '2015',
     "Top Speed": '257 km/h',
     "KM Allow per day": '300 KM',
@@ -293,20 +294,3 @@ List Alfa_Romeo_MiTo = [
     "KM Allow per day": '500 KM',
   },
 ];
-  // {
-    // "name": 'Alfa Romeo Giulietta',
-    // "image1": 'assets/list_cars/2014 BMW X1.jpg',
-
-    // "year": '2019',
-    // "Top Speed": '250 km/h',
-    // "KM Allow per day": '300 KM',
-  // },
-  // {
-  //   "name": "Alfa Rome 6C",
-  //   "image1": 'assets/list_cars/2014 BMW X1.jpg',
-
-  //   "year": '2006',
-  //   "Top Speed": '250 km/h',
-  //   "KM Allow per day": '500 KM',
-  // },
-// ];

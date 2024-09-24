@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class PaymentModel extends StatefulWidget {
+  final bool isSelected;
   final String title;
   final VoidCallback onTap;
-  final bool isSelected;
   const PaymentModel(
       {super.key,
       required this.title,
@@ -12,9 +12,9 @@ class PaymentModel extends StatefulWidget {
       required this.isSelected});
 
   @override
+
   State<PaymentModel> createState() => _PaymentModelState();
 }
-
 class _PaymentModelState extends State<PaymentModel> {
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _PaymentModelState extends State<PaymentModel> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color:
-              widget.isSelected ? const Color(0xffF4CE14) : Color(0xffC0C0C0),
+              widget.isSelected ? const Color(0xFFFF733B) : Color(0xffC0C0C0),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,161 +1,128 @@
 import 'package:flutter/material.dart';
-import 'package:rentaliti/list_cars.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rentaliti/app_cubit/app_cubit.dart';
+import 'package:rentaliti/app_cubit/app_state.dart';
 import 'package:rentaliti/screens/Home/custom_container.dart';
 import 'package:rentaliti/screens/Home/customize_home.dart';
 import 'package:rentaliti/screens/Info/Info_screen.dart';
 import 'package:rentaliti/screens/Top_bar/topbar.dart';
 
-// ignore: must_be_immutable
-class Homescreen extends StatelessWidget {
-  Customs custom = Customs();
-  Homescreen({super.key});
+class HomeScreen extends StatelessWidget {
+  final String? username;
+  final String? image;
+
+  HomeScreen({super.key, this.username, this.image});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        // color: Colors.blueGrey,
-        decoration: const BoxDecoration(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 5,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                //  RegisterCubit.get(context).nameController.text ?? ''
-                TopBar(
-                  username: '',
+    return BlocBuilder<AppCubit, AppStates>(
+      builder: (context, state) {
+        AppCubit appCubit = AppCubit.get(context);
+
+        return Scaffold(
+          body: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/back.jpg'),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 5,
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    TopBar(
+                      imageUrl: image ?? '',
+                      username: username ?? '',
+                    ),
+
+                    // Alfa Cars Section
+                    const HeadModels(carModel: 'Alfa Cars'),
+                    _buildCarList(
+                      context: context,
+                      carsList: appCubit.carsListDataAlfa,
+                      carModel: 'Alfa',
+                    ),
+
+                    // BMW Cars Section
+                    const HeadModels(carModel: 'BMW Cars'),
+                    _buildCarList(
+                      context: context,
+                      carsList: appCubit.carsListDataBMW,
+                      carModel: 'BMW',
+                    ),
+
+                    // Mercedes Cars Section
+                    const HeadModels(carModel: 'Mercedes Cars'),
+                    _buildCarList(
+                      context: context,
+                      carsList: appCubit.carsListDataMercedes,
+                      carModel: 'Mercedes',
+                    ),
+
+                    // Ford Cars Section
+                    const HeadModels(carModel: 'Ford Cars'),
+                    _buildCarList(
+                      context: context,
+                      carsList: appCubit.carsListDataFord,
+                      carModel: 'Ford',
+                    ),
+                  ],
                 ),
-                custom.headModels(car_model: 'Alfa'),
-                SizedBox(
-                  height: 250,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: AlfaCars.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => InfoScreen(
-                                car: AlfaCars[index],
-                              ),
-                            ),
-                          );
-                        },
-                        child: CustomContaineHome(
-                          image: AlfaCars[index]['image'],
-                          name: AlfaCars[index]['name'],
-                          year: AlfaCars[index]['year'],
-                          speed: AlfaCars[index]['speed'],
-                          price: AlfaCars[index]['price'],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                custom.headModels(car_model: 'BMW'),
-                SizedBox(
-                  height: 250,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: BMWCars.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => InfoScreen(car: BMWCars[index]),
-                            ),
-                          );
-                        },
-                        child: CustomContaineHome(
-                          image: BMWCars[index]['image'],
-                          name: BMWCars[index]['name'],
-                          year: BMWCars[index]['year'],
-                          speed: BMWCars[index]['speed'],
-                          price: BMWCars[index]['price'],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                custom.headModels(car_model: 'Mercedes'),
-                SizedBox(
-                  height: 250,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: MercedesCar.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => InfoScreen(
-                                car: MercedesCar[index],
-                              ),
-                            ),
-                          );
-                        },
-                        child: CustomContaineHome(
-                          image: MercedesCar[index]['image'],
-                          name: MercedesCar[index]['name'],
-                          year: MercedesCar[index]['year'],
-                          speed: MercedesCar[index]['speed'],
-                          price: MercedesCar[index]['price'],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                custom.headModels(car_model: 'Ford'),
-                SizedBox(
-                  height: 250,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: FordCars.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => InfoScreen(
-                                car: FordCars[index],
-                              ),
-                            ),
-                          );
-                        },
-                        child: CustomContaineHome(
-                          image: FordCars[index]['image'],
-                          name: FordCars[index]['name'],
-                          year: FordCars[index]['year'],
-                          speed: FordCars[index]['speed'],
-                          price: FordCars[index]['price'],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-              ],
+              ),
             ),
           ),
-        ),
+        );
+      },
+    );
+  }
+
+  // Helper method to create car list sections
+  Widget _buildCarList({
+    required BuildContext context,
+    required List<Map<String, dynamic>> carsList,
+    required String carModel,
+  }) {
+    return SizedBox(
+      height: 250,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: carsList.length,
+        itemBuilder: (context, index) {
+          var carData = carsList[index];
+
+          // Handle potential null or missing fields
+          String? imageUrl = carData['imageUrl'];
+          List<String> images = [];
+          if (carData['images'] != null) {
+            images = List<String>.from(carData['images']);
+          }
+
+          return CustomContainer(
+            image: imageUrl ?? '', // Provide a default empty string for image
+            name: carData['name'] ?? 'Unknown', // Handle missing name field
+            year: carData['year'] ?? 'Unknown', // Handle missing year
+            speed: carData['speed'] ?? 'Unknown', // Handle missing speed
+            price: carData['price'] ?? 'Unknown', // Handle missing price
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => InfoScreen(
+                    car: carData,
+                    nameCar:
+                        carData['name'] ?? 'Unknown', // Default if name is null
+                    images: images, // Cast images list correctly
+                  ),
+                ),
+              );
+            },
+          );
+        },
       ),
-      // bottomNavigationBar: const BarButtoms(),
     );
   }
 }

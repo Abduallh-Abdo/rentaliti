@@ -4,10 +4,12 @@ List BMWCars = [
     "name": 'BMW 500Li',
     "image": 'assets/list_cars/2015 BMW 750Li.jpg',
     "images": [
+      'assets/list_info_car/BMW/BMW 500Li/2.5.jpg',
+      'assets/list_info_car/BMW/BMW 500Li/2.4.jpg',
       'assets/list_info_car/BMW/BMW 500Li/2.2.jpg',
       'assets/list_info_car/BMW/BMW 500Li/2.3.jpg',
-      'assets/list_info_car/BMW/BMW 500Li/2.4.jpg',
-      'assets/list_info_car/BMW/BMW 500Li/2.5.jpg',
+
+
     ],
     "year": '2003',
     "speed": '250 km/h',
@@ -18,12 +20,12 @@ List BMWCars = [
     "name": 'BMW 750Li',
     "image": 'assets/list_info_car/BMW/BMW 750Li/1.4.jpg',
     "images": [
+      'assets/list_info_car/BMW/BMW 750Li/1.2.jpg',
+      'assets/list_info_car/BMW/BMW 750Li/1.6.jpg',
       'assets/list_info_car/BMW/BMW 750Li/1.4.jpg',
       'assets/list_info_car/BMW/BMW 750Li/1.5.jpg',
-      'assets/list_info_car/BMW/BMW 750Li/1.6.jpg',
       'assets/list_info_car/BMW/BMW 750Li/1.7.jpg',
-      'assets/list_info_car/BMW/BMW 750Li/1.2.jpg',
-      // 'assets/list_info_car/BMW/BMW 750Li/1.3.jpg',
+      'assets/list_info_car/BMW/BMW 750Li/1.3.jpg',
     ],
     "year": '2006',
     "speed": '250 km/h',
@@ -34,9 +36,9 @@ List BMWCars = [
     "name": 'BMW i4',
     "image": 'assets/list_cars/BMW i4.jpg',
     "images": [
+      'assets/list_info_car/BMW/BMW i4/3.5.jpg',
       'assets/list_info_car/BMW/BMW i4/3.2.jpg',
       'assets/list_info_car/BMW/BMW i4/3.3.jpg',
-      'assets/list_info_car/BMW/BMW i4/3.5.jpg',
       'assets/list_info_car/BMW/BMW i4/3.4.jpg',
     ],
     "price": '40\$',
@@ -44,51 +46,7 @@ List BMWCars = [
     "speed": '225  km/h',
     "KM Allow per day": '480  KM',
   },
-  // {
-  //   "name": 'BMW M240i',
-  //   "image": 'assets/list_cars/BMW M240i.jpg',
-  //   "images": [
-  //     'assets/list_info_car/BMW/BMW M240i/4.3.jpg',
-  //     'assets/list_info_car/BMW/BMW M240i/4.4.jpg',
-  //     'assets/list_info_car/BMW/BMW M240i/4.5.jpg',
-  //     // 'assets/list_info_car/BMW/BMW M240i/4.5.jpg',
-  //     'assets/list_info_car/BMW/BMW M240i/4.6.jpg',
-  //   ],
-  //   "year": '2022',
-  //   "speed": '250 km/h',
-  //   "price": '60\$',
-  //   "KM Allow per day": '400 KM',
-  // },
-  // {
-  //   "name": 'BMW X4',
-  //   "image": 'assets/list_cars/BMW X4.jpg',
-  //   "images": [
-  //     'assets/list_info_car/BMW/BMW X4/5.1.jpg',
-  //     'assets/list_info_car/BMW/BMW X4/5.2.jpg',
-  //     'assets/list_info_car/BMW/BMW X4/5.3.jpg',
-  //     'assets/list_info_car/BMW/BMW X4/5.4.jpg',
-  //     'assets/list_info_car/BMW/BMW X4/5.5.jpg',
-  //   ],
-  //   "year": '2018',
-  //   "speed": '250 km/h',
-  //   "price": '50\$',
-  //   "KM Allow per day": '510 KM',
-  // },
-  // {
-  //   "name": 'BMW X6',
-  //   "image": 'assets/list_cars/BMW X6.jpg',
-  //   "images": [
-  //     'assets/list_info_car/BMW/BMW X6/6.1.jpg',
-  //     'assets/list_info_car/BMW/BMW X6/6.2.jpg',
-  //     'assets/list_info_car/BMW/BMW X6/6.3.jpg',
-  //     'assets/list_info_car/BMW/BMW X6/6.4.jpg',
-  //     'assets/list_info_car/BMW/BMW X6/6.5.jpg',
-  //   ],
-  //   "year": '2008',
-  //   "speed": '250 km/h',
-  //   "price": '90\$',
-  //   "KM Allow per day": '530 KM',
-  // },
+
   {
     "name": 'BMW X1',
     "image": 'assets/list_cars/2014 BMW X1.jpg',
@@ -176,11 +134,12 @@ List MercedesCar = [
     "name": 'Mercedes CLS',
     "image": 'assets/list_cars/Mercedes E-class.jpg',
     "images": [
+      'assets/list_info_car/Mercedes/Mercedes CLS/1.4.jpg',
+      'assets/list_info_car/Mercedes/Mercedes CLS/1.5.jpg',
       'assets/list_info_car/Mercedes/Mercedes CLS/1.1.jpg',
       'assets/list_info_car/Mercedes/Mercedes CLS/1.2.jpg',
       'assets/list_info_car/Mercedes/Mercedes CLS/1.3.jpg',
-      'assets/list_info_car/Mercedes/Mercedes CLS/1.4.jpg',
-      'assets/list_info_car/Mercedes/Mercedes CLS/1.5.jpg',
+
       'assets/list_info_car/Mercedes/Mercedes CLS/1.6.jpg',
     ],
     "year": '2021',
@@ -196,10 +155,11 @@ List FordCars = [
     "name": 'Ford V8',
     "image": 'assets/list_cars/2020 Ford Mustang GT 5.0 V8.jpg',
     "images": [
+      'assets/list_info_car/Ford/Ford V8/download (12).jpg',
+      'assets/list_info_car/Ford/Ford V8/Ford Mustang V-8 USA 2024.jpg',
       'assets/list_info_car/Ford/Ford V8/050a6ee4-e6c3-4509-9d7e-dd5551f7ae9a.jpg',
       'assets/list_info_car/Ford/Ford V8/612ca49b-12dd-4a46-ad4a-6b4c166a9b0c.jpg',
-      'assets/list_info_car/Ford/Ford V8/download (12).jpg',
-      'assets/list_info_car/Ford/Ford V8/Ford Mustang V-8 USA 2024.jpg',     
+
       'assets/list_info_car/Ford/Ford V8/Mustang.jpg',
     ],
     "year": '2024',
@@ -211,10 +171,10 @@ List FordCars = [
     "name": 'ford-f-200',
     "image": 'assets/list_cars/2024-ford .jpg',
     "images": [
-      'assets/list_info_car/Ford/Ford-f-200/fa481170-ea9c-4281-9eec-0bc57229c1d1.jpg',
-      'assets/list_info_car/Ford/Ford-f-200/FORD RAPTOR.jpg',
       'assets/list_info_car/Ford/Ford-f-200/Heavily Lifted F-150.jpg',
       'assets/list_info_car/Ford/Ford-f-200/TuffTruckParts_com.jpg',
+      'assets/list_info_car/Ford/Ford-f-200/fa481170-ea9c-4281-9eec-0bc57229c1d1.jpg',
+      'assets/list_info_car/Ford/Ford-f-200/FORD RAPTOR.jpg',
       'assets/list_info_car/Ford/Ford-f-200/Top 10 Lifted Ford Trucks Modified for Off-roading and Desert Racing.jpg',
     ],
     "year": '2024',
@@ -241,10 +201,11 @@ List FordCars = [
     "name": 'Ford Mach E',
     "image": 'assets/list_cars/Ford Mach E.jpg',
     "images": [
-      'assets/list_info_car/Ford/Ford-mach-e/2021 Ford Mustang Mach-E SUV.jpg',
-      'assets/list_info_car/Ford/Ford-mach-e/2023 Ford Mustang Mach-E Select SUV _ Model Details & Specs.jpg',
       'assets/list_info_car/Ford/Ford-mach-e/2024 Ford Mustang Mach-E Prices, Reviews, and Pictures _ Edmunds.jpg',
       'assets/list_info_car/Ford/Ford-mach-e/Ford Mustang Mach-E.jpg',
+      'assets/list_info_car/Ford/Ford-mach-e/2021 Ford Mustang Mach-E SUV.jpg',
+      'assets/list_info_car/Ford/Ford-mach-e/2023 Ford Mustang Mach-E Select SUV _ Model Details & Specs.jpg',
+
       'assets/list_info_car/Ford/Ford-mach-e/download (12).jpg',
     ],
     "year": '2022',
@@ -255,13 +216,13 @@ List FordCars = [
   {
     "name": "Ford V10",
     "image":
-        "assets/list_info_car/Ford/Ford V10/Unmatched Prestige of super luxury cars.jpg",
+    "assets/list_info_car/Ford/Ford V10/Unmatched Prestige of super luxury cars.jpg",
     "images": [
-      'assets/list_info_car/Ford/Ford V10/Automotive Parts & Accessories - Amazon_com.jpg',
-      'assets/list_info_car/Ford/Ford V10/Ford GT 2020.jpg',
-      'assets/list_info_car/Ford/Ford V10/Ford Mustang V-8 2024 photo review.jpg',
-      // 'assets/list_info_car/Ford/Ford V10/Hennessey Venom GT Busts the Veyron SS\s Balls (Again).jpg',
       'assets/list_info_car/Ford/Ford V10/Unmatched Prestige of super luxury cars.jpg',
+      'assets/list_info_car/Ford/Ford V10/Automotive Parts & Accessories - Amazon_com.jpg',
+      'assets/list_info_car/Ford/Ford V10/Ford Mustang V-8 2024 photo review.jpg',
+      'assets/list_info_car/Ford/Ford V10/Ford GT 2020.jpg',
+
     ],
     "year": '2023',
     "speed": '90 to 120 mph',
@@ -271,11 +232,11 @@ List FordCars = [
   {
     "name": "Ford Territory",
     "image":
-        "assets/list_info_car/Ford/Ford territory/Ford Territory 2023 lướt bán lại lỗ ngỡ ngàng sau chưa đầy 1_000km lăn bánh (1).jpg",
+    "assets/list_info_car/Ford/Ford territory/Ford Territory 2023 lướt bán lại lỗ ngỡ ngàng sau chưa đầy 1_000km lăn bánh (1).jpg",
     "images": [
       'assets/list_info_car/Ford/Ford territory/Ford Territory 2023 lướt bán lại lỗ ngỡ ngàng sau chưa đầy 1_000km lăn bánh (1).jpg',
-      'assets/list_info_car/Ford/Ford territory/Ford Territory Titanium 1_5 Turbo 2021.jpg',
       'assets/list_info_car/Ford/Ford territory/Ford Territory.jpg',
+      'assets/list_info_car/Ford/Ford territory/Ford Territory Titanium 1_5 Turbo 2021.jpg',
       'assets/list_info_car/Ford/Ford territory/Fotos da Territory 2022.jpg',
       'assets/list_info_car/Ford/Ford territory/New 2021 Ford Territory - Budget Family SUV Interior & Exterior.jpg',
     ],
@@ -292,11 +253,13 @@ List AlfaCars = [
     "name": 'Alfa Remo 4c',
     "image": 'assets/list_cars/alfa-romeo_4c_.jpg',
     "images": [
-      'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-1.jpg',
       'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-2.jpg',
+      'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-5.jpg',
+      'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-1.jpg',
+
       'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-3.jpg',
       'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-4.jpg',
-      'assets/list_info_car/Alfa/Alfa-Romeo-4C/2015-Alfa-Romeo-4C-5.jpg',
+
     ],
     "year": '2015',
     "speed": '257 km/h',
@@ -307,10 +270,12 @@ List AlfaCars = [
     "name": 'Alfa romeo',
     "image": 'assets/list_cars/alfa-romeo_4num.jpeg',
     "images": [
-      'assets/list_info_car/Alfa/Alfa romeo/2024-Alfa-Romeo-1.jpeg',
       'assets/list_info_car/Alfa/Alfa romeo/2024-Alfa-Romeo-2.jpeg',
       'assets/list_info_car/Alfa/Alfa romeo/2024-Alfa-Romeo-3.jpeg',
+      'assets/list_info_car/Alfa/Alfa romeo/2024-Alfa-Romeo-1.jpeg',
+
       'assets/list_info_car/Alfa/Alfa romeo/2024-Alfa-Romeo-4.jpeg',
+
       'assets/list_info_car/Alfa/Alfa romeo/2024-Alfa-Romeo-5.jpeg',
     ],
     "year": '2024',
@@ -323,28 +288,15 @@ List AlfaCars = [
     "image": 'assets/list_cars/Alpha Mito.jpeg',
     "images": [
       'assets/list_info_car/Alfa/Alfa Mito/2020-alfa-romeo-4c-1.jpg',
-      'assets/list_info_car/Alfa/Alfa Mito/2020-alfa-romeo-4c-2.jpg',
       'assets/list_info_car/Alfa/Alfa Mito/2020-alfa-romeo-4c-3.jpg',
       'assets/list_info_car/Alfa/Alfa Mito/2020-alfa-romeo-4c-4.jpg',
       'assets/list_info_car/Alfa/Alfa Mito/2020-alfa-romeo-4c-5.jpg',
+      'assets/list_info_car/Alfa/Alfa Mito/2020-alfa-romeo-4c-2.jpg',
+
     ],
     "year": '2018',
     "speed": '225 km/h',
     "price": '80\$',
     "KM Allow per day": '300 KM',
   },
-  // {
-  //   "name": 'Alfa Rome 6c',
-  //   "image": 'assets/list_cars/alfa-romeo_6c.jpg',
-  //   "year": '2019',
-  //   "speed": '400km',
-  //   "price": '40\$',
-  // },
-  // {
-  //   "name": "Alfa Rome 6C",
-  //   "image": 'assets/list_cars/alpha car.jpeg',
-  //   "year": '2023',
-  //   "speed": '600km',
-  //   "price": '300\$',
-  // },
 ];

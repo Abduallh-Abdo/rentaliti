@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rentaliti/auth/forgot_pass/forgot_password.dart';
@@ -15,13 +18,48 @@ class LoginScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is LoginSuccessState) {
-            navigateAndFinish(
-              context: context,
-              widget: Homescreen(),
-            );
+            // Assuming user UID is fetched from state or FirebaseAuth instance
+            String? userId = FirebaseAuth.instance.currentUser?.uid;
+
+            if (userId != null) {
+              // Fetch user data from Firestore based on the UID
+              DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(userId)
+                  .get();
+
+              if (userSnapshot.exists) {
+                // Get user details from Firestore
+                String username = userSnapshot['name'] ?? 'Guest';
+                String? imageUrl =
+                    userSnapshot['imageUrl']; // Assuming imageUrl is stored
+
+                // Navigate to HomeScreen with user details
+                navigateAndFinish(
+                  context: context,
+                  widget: HomeScreen(
+                    username: username,
+                    image:
+                        imageUrl ?? '', // Pass empty string if imageUrl is null
+                  ),
+                );
+              } else {
+                // Handle the case where user data doesn't exist in Firestore
+                defaultToast(
+                  msg: 'User data not found!',
+                  state: ToastStates.error,
+                );
+              }
+            } else {
+              defaultToast(
+                msg: 'Unable to fetch user data!',
+                state: ToastStates.error,
+              );
+            }
           } else if (state is LoginErrorState) {
+            // Show error toast in case of login failure
             defaultToast(
               msg: state.error,
               state: ToastStates.error,
@@ -44,12 +82,11 @@ class LoginScreen extends StatelessWidget {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Color(0xffff5c30),
                             Color(0xffe74b1a),
+                            Color(0x00ffffff),
                           ],
                         ),
                       ),
-                      // child: Text(''),
                     ),
                     Container(
                       margin: EdgeInsets.only(
@@ -73,15 +110,14 @@ class LoginScreen extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          // Center(
-                          //   child: Image.asset(
-                          //     'assets/images/logo.png',
-                          //     width: MediaQuery.of(context).size.width,
-                          //   ),
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
+                          Image.asset(
+                            "assets/images/logo.png",
+                            width: 180,
+                            height: 180,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           Material(
                             elevation: 5,
                             borderRadius: BorderRadius.circular(20),
@@ -100,7 +136,7 @@ class LoginScreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Rakkas',
                                     ),
                                   ),
                                   defaultFormField(
@@ -169,36 +205,43 @@ class LoginScreen extends StatelessWidget {
                                   const SizedBox(
                                     height: 40,
                                   ),
-                                  defaultButton(
-                                    radius: 20,
-                                    width: 150,
-                                    color: const Color(0xffff5722),
-                                    text: 'Login',
-                                    onPressed: () {
-                                      if (loginCubit.loginFormKey.currentState!
-                                          .validate()) {
-                                        loginCubit.userLogin(
-                                          email:
-                                              loginCubit.emailController.text,
-                                          password:
-                                              loginCubit.passController.text,
-                                        );
-                                      }
-                                    },
+                                  ConditionalBuilder(
+                                    condition: state is! LoginLoadingState,
+                                    fallback: (context) => const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    builder: (context) => defaultButton(
+                                      radius: 20,
+                                      width: 150,
+                                      color: const Color(0xffff5722),
+                                      text: 'Login',
+                                      onPressed: () {
+                                        if (loginCubit
+                                            .loginFormKey.currentState!
+                                            .validate()) {
+                                          loginCubit.userLogin(
+                                            email:
+                                                loginCubit.emailController.text,
+                                            password:
+                                                loginCubit.passController.text,
+                                          );
+                                        }
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height / 8,
+                            height: MediaQuery.of(context).size.height / 30,
                           ),
                           Row(
                             children: [
                               const Text(
                                 'Don\'t have an account?',
                                 style: TextStyle(
-                                  fontFamily: 'Poppins',
+                                  // fontFamily: 'Rakkas',
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15,
                                 ),

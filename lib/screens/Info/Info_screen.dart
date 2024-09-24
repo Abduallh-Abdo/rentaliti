@@ -1,23 +1,27 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:rentaliti/List_info_car.dart';
 import 'package:rentaliti/screens/Booking/booking_screen.dart';
+import 'package:rentaliti/screens/Info/Dialog_Show_Car.dart';
 import 'package:rentaliti/screens/Info/custom_details.dart';
 import 'package:rentaliti/screens/Info/custom_images.dart';
 
 class InfoScreen extends StatelessWidget {
-  final Map car;
-  InfoScreen({super.key, required this.car});
+  final Map<String, dynamic> car;
+  final String nameCar;
+  final List<String> images; // Ensure the images are of type List<String>
+
+  const InfoScreen(
+      {super.key,
+      required this.car,
+      required this.nameCar,
+      required this.images});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Details',
-          style: TextStyle(
+        title: Text(
+          nameCar,
+          style: const TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
             fontFamily: 'Rakkas',
@@ -29,33 +33,17 @@ class InfoScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: ListView(
           children: [
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 10),
+
+            // Image Tap to Open in Dialog
             InkWell(
               onTap: () {
                 showDialog(
                   context: context,
                   barrierDismissible: true,
-                  builder: (context) => AlertDialog(
-                    backgroundColor: Colors.transparent,
-                    contentPadding: EdgeInsets.zero,
-                    content: ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: Container(
-                        width: 250,
-                        height: 200,
-                        color: Colors.white,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(car['image']),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  builder: (context) => ImageDialog(
+                    imagePath: car['imageUrl'], // Can be asset or network image
+                    images: images, // Cast the car['images'] as List<String>
                   ),
                 );
               },
@@ -66,63 +54,85 @@ class InfoScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                   image: DecorationImage(
-                    image: AssetImage(car['image']),
+                    image: _getImageProvider(car['imageUrl']),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
+
+            // Carousel or List of Other Images
             SizedBox(
               height: 150,
               child: CustomImages(
-                images: car['images'],
+                images:
+                    images, // Should handle a list of image URLs (List<String>)
               ),
             ),
-            const SizedBox(
-              height: 15,
-            ),
+            const SizedBox(height: 15),
+
+            // Car Details Section
             SizedBox(
-              height: 200,
+              height: 265,
               child: ListView.builder(
-                itemCount: BMW_X1.length,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 1, // Only showing one car's data
                 itemBuilder: (context, index) {
-                  return Details(
+                  return CarData(
                     name: car['name'],
                     year: car['year'],
                     topspeed: car['speed'],
                     price: car['price'],
-                    allow: car['KM Allow per day'],
+                    kmPer: car['km_allow'], // Ensure the key matches your data
                   );
                 },
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xffF4CE14),
+
+            const SizedBox(height: 30),
+
+            // Book Now Button
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.red.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(20),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BookScreen(),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BookScreen(
+                        car: car,
+                        
+                      ),
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Book Now',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26,
+                    fontFamily: 'Rakkas',
                   ),
-                );
-              },
-              child: const Text(
-                'Book Now',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 26,
-                  fontFamily: 'Rakkas',
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
+  }
+
+  // Helper method to get the correct image provider (NetworkImage or AssetImage)
+  ImageProvider _getImageProvider(String imagePath) {
+    if (imagePath.contains('http')) {
+      // If the imagePath is a URL (from Firebase or online)
+      return NetworkImage(imagePath);
+    } else {
+      // If the image is from local assets
+      return AssetImage(imagePath);
+    }
   }
 }

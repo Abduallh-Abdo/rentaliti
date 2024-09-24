@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rentaliti/auth/forgot_pass/cubit/forgot_password_cubit.dart';
@@ -43,13 +42,23 @@ class ForgotPassword extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          Center(
+                            child: Image.asset(
+                              'assets/images/forget_pass.png',
+                              height: 150,
+                              width: 150,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
                           Text(
                             'Password Recovery',
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineLarge!
                                 .copyWith(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Rakkas',
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -59,7 +68,7 @@ class ForgotPassword extends StatelessWidget {
                             'Enter Your Email',
                             style:
                                 Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Rakkas',
                                       color: Colors.grey,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -119,7 +128,7 @@ class ForgotPassword extends StatelessWidget {
                               const Text(
                                 'Don\'t have an account?',
                                 style: TextStyle(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Rakkas',
                                   fontWeight: FontWeight.bold,
                                   color: Colors.grey,
                                   fontSize: 15,

@@ -87,7 +87,7 @@ Widget defaultFormField({
     style: TextStyle(
       color: textColor,
       fontWeight: FontWeight.bold,
-      fontFamily: 'Poppins',
+      // fontFamily: 'Rakkas',
     ),
     controller: controller,
     keyboardType: type,
@@ -152,7 +152,7 @@ Widget defaultButton({
         isUppercase ? text.toUpperCase() : text,
         style: TextStyle(
           color: textColor,
-          fontFamily: 'poppins',
+          // fontFamily: 'Rakkas',
           fontWeight: FontWeight.bold,
           fontSize: 15,
         ),
@@ -174,7 +174,7 @@ Widget defaultTextButton({
         color: color,
         fontSize: 18,
         fontWeight: FontWeight.bold,
-        fontFamily: 'Poppins',
+        // fontFamily: 'Rakkas',
       ),
     ),
   );

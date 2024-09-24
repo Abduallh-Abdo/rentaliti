@@ -1,16 +1,37 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 abstract class LoginStates {}
 
-final class LoginInitial extends LoginStates {}
+class LoginInitial extends LoginStates {}
 
-final class LoginChangePasswordVisibilityState extends LoginStates {}
+class LoginChangePasswordVisibilityState extends LoginStates {}
 
-final class LoginLoadingState extends LoginStates {}
+class LoginLoadingState extends LoginStates {}
 
-final class LoginSuccessState extends LoginStates {}
+class LoginSuccessState extends LoginStates {
+  final String email;
+  final String uid;
 
-final class LoginErrorState extends LoginStates {
+  LoginSuccessState({required this.email, required this.uid});
+}
+
+class LoginErrorState extends LoginStates {
   final String error;
 
   LoginErrorState({required this.error});
+}
 
+// States for user retrieval from Firestore
+class AppGetUsersLoadingState extends LoginStates {}
+
+class AppGetUsersSuccessState extends LoginStates {
+  final List<DocumentSnapshot> users;
+  
+  AppGetUsersSuccessState(this.users);
+}
+
+class AppGetUsersErrorState extends LoginStates {
+  final String error;
+
+  AppGetUsersErrorState(this.error);
 }

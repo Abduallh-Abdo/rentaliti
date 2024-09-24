@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget {
-  String username;
-  TopBar({Key? key,  required this.username});
+  final String imageUrl;
+  final String username;
 
+  const TopBar({super.key, required this.imageUrl, required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -12,39 +15,37 @@ class TopBar extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 25),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Color(0xffF1F1F2),
-        border: Border.all(
-          width: 2,
-          color: Color(0xff495E57),
-        ),
-        borderRadius: BorderRadius.circular(501),
+        borderRadius: BorderRadius.circular(50),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // InkWell(
-          //   onTap: () {},
-          //   child: const CircleAvatar(
-          //     radius: 35,
-          //     backgroundImage: AssetImage('assets/images/ergo_proxy.jpg'),
-          //   ),
-          // ),
-           Padding(
+          CircleAvatar(
+            radius: 35,
+            backgroundImage: imageUrl.isNotEmpty
+                ? NetworkImage(imageUrl) // Use network image if available
+                : const AssetImage('assets/user.jpg')
+                    as ImageProvider, // Placeholder image
+          ),
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               Text(
-                      'Welcome,$username',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Rakkas',
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                 Text(
-                  'Egypt-cairo',
+                  'Welcome, $username',
                   style: const TextStyle(
                     fontSize: 20,
+                    fontFamily: 'Rakkas',
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Text(
+                  'Egypt-Cairo', // You can make this dynamic if needed
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
                     fontFamily: 'Rakkas',
                   ),
                 ),

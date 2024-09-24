@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rentaliti/Splash/splash_screen.dart';
+import 'package:rentaliti/app_cubit/app_cubit.dart';
 import 'package:rentaliti/screens/Home/homeScreen.dart';
 
 void main() async {
@@ -13,9 +16,17 @@ class CarRental extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Homescreen(),
+    return BlocProvider(
+      create: (context) => AppCubit()..getCarListData(),
+      child: MaterialApp(
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.transparent,
+          ),
+        ),
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(),
+      ),
     );
   }
 }

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rentaliti/auth/login/login_screen.dart';
@@ -5,6 +8,9 @@ import 'package:rentaliti/auth/register/cubit/register_cubit.dart';
 import 'package:rentaliti/auth/register/cubit/register_state.dart';
 import 'package:rentaliti/components/components.dart';
 import 'package:rentaliti/screens/Home/homeScreen.dart';
+import 'package:rentaliti/service/cloud_storage_service.dart';
+import 'package:rentaliti/service/db_service.dart';
+import 'package:rentaliti/service/media_service.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -16,13 +22,24 @@ class RegisterScreen extends StatelessWidget {
       child: BlocConsumer<RegisterCubit, RegisterStates>(
         listener: (context, state) {
           if (state is RegisterSuccessState) {
-            // Navigate to HomeLayout on success
+            String? imageUrl = RegisterCubit.get(context).image != null
+                ? RegisterCubit.get(context)
+                    .image!
+                    .path // If image picked from local
+                : '';
+            // Proceed to next screen or actions after successful registration
             navigateAndFinish(
               context: context,
-              widget: Homescreen(),
+              widget: HomeScreen(
+                image: imageUrl,
+                username:
+                    RegisterCubit.get(context).nameController.text.isNotEmpty
+                        ? RegisterCubit.get(context).nameController.text
+                        : 'Guest',
+              ),
             );
           } else if (state is RegisterErrorState) {
-            // Show error toast on failure
+            // Show error on registration failure
             defaultToast(
               msg: state.error,
               state: ToastStates.error,
@@ -46,7 +63,7 @@ class RegisterScreen extends StatelessWidget {
                           end: Alignment.bottomRight,
                           colors: [
                             Color(0xffff5c30),
-                            Color(0xffe74b1a),
+                            Color(0x00ffffff),
                           ],
                         ),
                       ),
@@ -76,12 +93,10 @@ class RegisterScreen extends StatelessWidget {
                         children: [
                           Center(
                             child: Image.asset(
-                              'assets/images/logo.png',
-                              width: MediaQuery.of(context).size.width,
+                              'assets/images/login_photo.png',
+                              width: 150,
+                              height: 150,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 20,
                           ),
                           Material(
                             elevation: 5,
@@ -101,11 +116,36 @@ class RegisterScreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Rakkas',
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 40,
+                                  GestureDetector(
+                                    onTap: () async {
+                                      File? pickedImage = await MediaService
+                                          .instance
+                                          .getImageFromFile();
+                                      if (pickedImage != null) {
+                                        // Image selected successfully
+                                        print(
+                                            'Image selected: ${pickedImage.path}');
+                                        registerCubit.imagePick(
+                                            imagepicked: pickedImage);
+                                      } else {
+                                        // No image was selected
+                                        print('No image selected');
+                                      }
+                                    },
+                                    child: Center(
+                                      child: CircleAvatar(
+                                        radius: 50,
+                                        backgroundImage: registerCubit.image !=
+                                                null
+                                            ? FileImage(registerCubit
+                                                .image!) // Show selected image
+                                            : AssetImage('assets/car.png')
+                                                as ImageProvider, // Default image or placeholder
+                                      ),
+                                    ),
                                   ),
                                   defaultFormField(
                                     focusedBorder: const UnderlineInputBorder(),
@@ -114,7 +154,6 @@ class RegisterScreen extends StatelessWidget {
                                       if (value == null || value.isEmpty) {
                                         return 'Please enter your name';
                                       }
-
                                       return null;
                                     },
                                     hintText: 'Name',
@@ -174,6 +213,26 @@ class RegisterScreen extends StatelessWidget {
                                               .emailController.text,
                                           password:
                                               registerCubit.passController.text,
+                                          onSuccess: (uid) async {
+                                            var result =
+                                                await CloudStorageService
+                                                    .instance
+                                                    .uploadUserImage(
+                                              uid,
+                                              registerCubit.image!,
+                                            );
+                                            var imageUrl = await result!.ref
+                                                .getDownloadURL();
+                                            await DBService.instance
+                                                .createUserInDB(
+                                              uid: uid,
+                                              imageUrl: imageUrl,
+                                              name: registerCubit
+                                                  .nameController.text,
+                                              email: registerCubit
+                                                  .emailController.text,
+                                            );
+                                          },
                                         );
                                       }
                                     },
@@ -181,52 +240,79 @@ class RegisterScreen extends StatelessWidget {
                                   const SizedBox(
                                     height: 40,
                                   ),
-                                  defaultButton(
-                                    radius: 20,
-                                    width: 150,
-                                    color: const Color(0xffff5722),
-                                    text: 'Sign Up',
-                                    onPressed: () {
-                                      if (registerCubit
-                                          .registerFormKey.currentState!
-                                          .validate()) {
-                                        registerCubit.userSignUp(
-                                          name:
-                                              registerCubit.nameController.text,
-                                          email: registerCubit
-                                              .emailController.text,
-                                          password:
-                                              registerCubit.passController.text,
-                                        );
-                                      }
-                                    },
+                                  ConditionalBuilder(
+                                    condition: state is! RegisterLoadingState,
+                                    fallback: (context) => const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    builder: (context) => defaultButton(
+                                      radius: 20,
+                                      width: 150,
+                                      color: const Color(0xffff5722),
+                                      text: 'Sign Up',
+                                      onPressed: () {
+                                        if (registerCubit
+                                            .registerFormKey.currentState!
+                                            .validate()) {
+                                          registerCubit.userSignUp(
+                                            name: registerCubit
+                                                .nameController.text,
+                                            email: registerCubit
+                                                .emailController.text,
+                                            password: registerCubit
+                                                .passController.text,
+                                            onSuccess: (uid) async {
+                                              var result =
+                                                  await CloudStorageService
+                                                      .instance
+                                                      .uploadUserImage(
+                                                uid,
+                                                registerCubit.image!,
+                                              );
+                                              var imageUrl = await result!.ref
+                                                  .getDownloadURL();
+                                              await DBService.instance
+                                                  .createUserInDB(
+                                                uid: uid,
+                                                imageUrl: imageUrl,
+                                                name: registerCubit
+                                                    .nameController.text,
+                                                email: registerCubit
+                                                    .emailController.text,
+                                              );
+                                            },
+                                          );
+                                        }
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height / 16,
+                            // height: 20,
+                            height: MediaQuery.of(context).size.height / 40,
                           ),
                           Row(
                             children: [
                               const Text(
                                 'Already have an account?',
                                 style: TextStyle(
-                                  fontFamily: 'Poppins',
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15,
                                 ),
                               ),
                               defaultTextButton(
-                                  text: 'Login',
-                                  color: const Color(0xffff5722),
-                                  onPressed: () {
-                                    navigateAndFinish(
-                                      context: context,
-                                      widget: const LoginScreen(),
-                                    );
-                                  })
+                                text: 'Login',
+                                color: const Color(0xffff5722),
+                                onPressed: () {
+                                  navigateAndFinish(
+                                    context: context,
+                                    widget: const LoginScreen(),
+                                  );
+                                },
+                              ),
                             ],
                           ),
                         ],
